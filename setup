@@ -1,12 +1,13 @@
 #!/bin/bash
 
 sudo apt update
-sudo apt install software-properties-common
+sudo apt install software-properties-common -y
 sudo apt-add-repository --yes --update ppa:ansible/ansible
 sudo apt install ansible git -y
 
+TMPDIR=$(mktemp -d)
+git clone https://github.com/becker/ansible-local-dev.git $TMPDIR
 
-git clone https://github.com/becker/ansible-local-dev.git .
+ansible-playbook --connection=local $TMPDIR/bootstrap.yml
 
-cd local-bootstrap/
-ansible-playbook --connection=local bootstrap.yml
+rm -rf $TMPDIR
