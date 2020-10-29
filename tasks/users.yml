@@ -1,7 +1,7 @@
-- name: create ansible user
+- name: Create ansible user
   user: name=ansible uid=900
   
-- name: copy sudoers_ansible
+- name: Copy sudoers_ansible
   copy: 
     src: files/sudoers_ansible
     dest: /etc/sudoers.d/ansible
