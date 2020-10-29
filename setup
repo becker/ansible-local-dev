@@ -1,8 +1,15 @@
 #!/bin/bash
 
+LSB_RELEASE=`lsb_release -r | awk '{print $2}'`
+
 sudo apt update
 sudo apt install software-properties-common -y
-sudo apt-add-repository --yes --update ppa:ansible/ansible
+
+if [ $(echo "$LSB_RELEASE < 20" | bc) -ne 0 ]
+then
+    sudo apt-add-repository --yes --update ppa:ansible/ansible
+fi
+
 sudo apt install ansible git -y
 
 TMPDIR=$(mktemp -d)

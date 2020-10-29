@@ -13,13 +13,12 @@
 - name: Install packages
   apt: 
     install_recommends: no
-    name: "{{ item }}"
-    with_items:
-    - build-essential
-    - curl
-    - file
-    - git
-    - git-flow
-    - neovim
-    - fish
-    - nginx
+    name: 
+      - build-essential
+      - curl
+      - file
+      - git
+      - git-flow
+      - neovim
+      - fish
+      - nginx
