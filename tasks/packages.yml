@@ -1,0 +1,30 @@
+- name: add neovim repository
+  apt_repository:
+    repo: 'ppa:neovim-ppa/stable'
+
+- name: add fish repository
+  apt_repository:
+    repo: 'ppa:fish-shell/release-3'
+
+- name: add nginx repository
+  apt_repository: 
+    repo: 'ppa:nginx/stable'
+
+- name: Install packages
+  apt: 
+    name: {{item}}
+  with_items:
+    - build-essential
+    - curl
+    - file
+    - git
+    - git-flow
+    - neovim
+    - fish
+    - nginx
+
+  handlers:
+    - name: start nginx
+      ansible.builtin.service:
+        name: nginx
+        state: started
